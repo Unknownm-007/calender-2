@@ -1,0 +1,61 @@
+<div class="mt-2">
+  <form [formGroup]="newEvent" (ngSubmit)="onSubmit()">
+    <div class="mb-2">
+      <label for="title" class="block text-gray-700 text-sm font-bold mb-1"
+        >Title:</label
+      >
+      <input
+        type="text"
+        id="title"
+        class="shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        [formControl]="title"
+        name="title"
+        required
+      />
+    </div>
+    <div class="mb-2">
+      <label
+        for="description"
+        class="block text-gray-700 text-sm font-bold mb-1"
+        >Description:</label
+      >
+      <textarea
+        [formControl]="desc"
+        id="description"
+        class="shadow appearance-none border rounded w-full py-1 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        name="description"
+        rows="2"
+        required
+      ></textarea>
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        type="submit"
+        class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+      >
+        Add Event
+      </button>
+    </div>
+  </form>
+</div>
+<div class="mt-4">
+  <h3 class="text-indigo-500 font-semibold text-sm mb-2">Events :</h3>
+  <ul class="list-disc list-inside">
+    <div *ngFor="let event of currEvents" class="mb-2 border p-1 rounded shadow">
+      <div
+        class="p-2 border border-gray-300 rounded bg-indigo-100 flex items-center justify-between"
+      >
+        <div>
+          <strong class="block text-indigo-600">{{ event.title }}</strong>
+          <span>{{ truncate(event.desc, 30) }}</span>
+        </div>
+        <button
+          (click)="openDialog(event)"
+          class="bg-indigo-600 hover:bg-indigo-400 text-white font-bold py-1 px-3 rounded ml-2"
+        >
+          See details
+        </button>
+      </div>
+    </div>
+  </ul>
+</div>
